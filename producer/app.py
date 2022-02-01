@@ -1,9 +1,11 @@
+import json
 from kafka import KafkaProducer
 from time import sleep
 
 producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
+    bootstrap_servers=['kafka:19092'],
     api_version=(0, 11, 5),
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
 count = 0
